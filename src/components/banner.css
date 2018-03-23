@@ -1,0 +1,28 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	border: 5px solid blue;
+	/*background-color: #00004d;*/
+}
+
+h1 {
+	color: black;
+	font-size: 40px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+li {
+	/*color: white;*/
+	text-decoration: none;
+}
+
+/*.what {
+	float: left;
+}
+
+.new-game {
+	float: right;
+}*/

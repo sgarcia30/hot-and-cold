@@ -8,7 +8,7 @@ export default class Main extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			number: 0,
+			number: this.randomNum(),
 			curGuess: '',
 			historicalGuesses: [],
 			curFeedback: '',
@@ -17,7 +17,25 @@ export default class Main extends React.Component {
 		}
 	}
 
+	setCurGuess(curGuess) {
+		this.setState({
+			curGuess
+		})
+	}
+
+	randomNum() {
+		let randVal = 0+(Math.random()*(100-0));
+		return Math.round(randVal);
+	}
+
+	setNumber() {
+		this.setState({
+			number: this.randomNum()
+		})
+	}
+
 	setInstrucButt(instrucButton) {
+		console.log(instrucButton);
 		this.setState({
 			instrucButton
 		})
@@ -27,8 +45,14 @@ export default class Main extends React.Component {
 		if (!this.state.instrucButton) {
 			return (
 				<div className='body'>
-					<Banner setInstrucButt={(instrucButton) => this.setInstrucButt(instrucButton)}/>
-					<Game />
+					<Banner 
+					setNumber={() => this.setNumber()}
+					setInstrucButt={(instrucButton) => this.setInstrucButt(instrucButton)}
+					/>
+					<Game 
+					number={this.state.number}
+					setCurGuess={(curGuess) => this.setCurGuess(curGuess)}
+					/>
 				</div>
 			)
 		}

@@ -8,10 +8,22 @@ export default function Banner(props) {
 			<nav>
 				<ul>
 					<li>
-						<a className='what' href='' onClick={() => props.setInstrucButt(true)}>What ?</a>
+						<a 
+						className='what' 
+						href='#' 
+						onClick={() => props.setInstrucButt(true)}
+						>
+						What?
+						</a>
 					</li>
 					<li>
-						<a className='new-game' href=''>+ New Game</a>
+						<a 
+						className='new-game' 
+						href='#'
+						onClick={() => props.setNumber()}
+						>
+						+ New Game
+						</a>
 					</li>
 				</ul>
 			</nav>

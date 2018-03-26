@@ -8,18 +8,28 @@ export default class Main extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			number: this.randomNum(),
+			answer: this.randomNum(),
 			curGuess: '',
 			historicalGuesses: [],
 			curFeedback: '',
-			possFeedback: ['hot', 'cold'],
+			possFeedback: ['hot', 'cold', 'Winner!'],
 			instrucButton: false
 		}
 	}
 
-	setCurGuess(curGuess) {
+	userGuess(curGuess) {
 		this.setState({
-			curGuess
+			curGuess,
+			historicalGuesses: [...this.state.historicalGuesses, curGuess],
+			curFeedback: this.setFeedBack(curGuess)
+		})
+	}
+
+	resetGame() {
+		this.setState({
+			curFeedback: '',
+			historicalGuesses: [],
+			curGuess: ''
 		})
 	}
 
@@ -30,7 +40,7 @@ export default class Main extends React.Component {
 
 	setNumber() {
 		this.setState({
-			number: this.randomNum()
+			answer: this.randomNum()
 		})
 	}
 
@@ -41,6 +51,20 @@ export default class Main extends React.Component {
 		})
 	}
 
+	setFeedBack(curGuess) {
+		const answerMinus10 = this.state.answer - 10;
+		const answerPlus10 = this.state.answer + 10;
+		if (curGuess == this.state.answer) {
+			return 'Winner!'
+		}
+		else if ( answerMinus10 <= curGuess && curGuess <= answerPlus10) {
+			return 'hot'
+		}
+		else {
+			return 'cold'
+		}
+	}
+
 	render() {		
 		if (!this.state.instrucButton) {
 			return (
@@ -48,10 +72,13 @@ export default class Main extends React.Component {
 					<Banner 
 					setNumber={() => this.setNumber()}
 					setInstrucButt={(instrucButton) => this.setInstrucButt(instrucButton)}
+					resetGame={() => this.resetGame()}
 					/>
 					<Game 
 					number={this.state.number}
-					setCurGuess={(curGuess) => this.setCurGuess(curGuess)}
+					userGuess={(curGuess) => this.userGuess(curGuess)}
+					guessCount={this.state.historicalGuesses.length}
+					curFeedback={this.state.curFeedback}
 					/>
 				</div>
 			)

@@ -20,7 +20,10 @@ export default function Banner(props) {
 						<a 
 						className='new-game' 
 						href='#'
-						onClick={() => props.setNumber()}
+						onClick={() => {
+							props.setNumber();
+							props.resetGame();
+						}}
 						>
 						+ New Game
 						</a>

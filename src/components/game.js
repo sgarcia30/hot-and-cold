@@ -6,7 +6,14 @@ export default function Game(props) {
 	return (
 		<section className="game">
 			<h2>Make your Guess!</h2>
-			<form>
+			<span id='feedback'>{props.curFeedback}</span>
+			<form 
+			onSubmit={(event) => {
+				event.preventDefault();
+				props.userGuess(event.target.userGuess.value);
+				event.target.userGuess.value = '';
+			}}
+			>
 				<input 
 				type='text' 
 				name='userGuess' 
@@ -15,9 +22,6 @@ export default function Game(props) {
 				autoComplete='off' 
 				placeholder='Enter your Guess' 
 				required
-				onSubmit={(event) => {
-					props.setCurGuess(event.target.value);
-				}}
 				>
 				</input>
 				<input 
@@ -26,14 +30,11 @@ export default function Game(props) {
 				className='button' 
 				name='submit' 
 				value='Guess'
-				onSubmit={(event) => {
-					event.preventDefault();
-				}}
 				>
 				</input>
 			</form>
 			<p>
-				<span id='count'>0</span>!
+				<span id='count'>Guess #{props.guessCount}</span>!
 			</p>
 			<ul id='guessList' className='guessBox'>
 			</ul>

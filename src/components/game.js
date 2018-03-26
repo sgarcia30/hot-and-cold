@@ -1,8 +1,13 @@
 import React from 'react';
+// import Parser from 'html-react-parser';
 
 import './game.css';
 
 export default function Game(props) {
+	let list = '';
+	props.historicalGuesses.forEach(guess => {
+		list += +guess+' '
+	})
 	return (
 		<section className="game">
 			<h2>Make your Guess!</h2>
@@ -37,6 +42,7 @@ export default function Game(props) {
 				<span id='count'>Guess #{props.guessCount}</span>!
 			</p>
 			<ul id='guessList' className='guessBox'>
+				{list}
 			</ul>
 		</section>
 	)

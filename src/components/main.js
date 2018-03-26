@@ -79,6 +79,7 @@ export default class Main extends React.Component {
 					userGuess={(curGuess) => this.userGuess(curGuess)}
 					guessCount={this.state.historicalGuesses.length}
 					curFeedback={this.state.curFeedback}
+					historicalGuesses={this.state.historicalGuesses}
 					/>
 				</div>
 			)
